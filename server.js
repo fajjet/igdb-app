@@ -11,17 +11,40 @@ require('dotenv').config();
 
 const apiURL = 'https://api-v3.igdb.com';
 
+const apiTokens = {
+    feed: {
+        endpoint: '/games',
+        options: {
+            fields: '*',
+            where: 'total_rating > 97',
+            limit: 100,
+            sort: 'total_rating desc'
+        }
+    },
+};
+
+const combineOptions = options => {
+  return Object.keys(options).reduce((acc, name) => {
+      const value = options[name];
+      return acc + `${name} ${value};`;
+  }, '');
+};
+
 (async () => {
     try {
         await app.prepare();
         const server = express();
 
+        server.use(express.json());
+
         server.all('/api/*', function(req, res) {
-            const query = req.url.replace('/api', '');
-            request(apiURL + query, {
+            const point = req.params[0];
+            const token = apiTokens[point];
+            request(apiURL + token.endpoint, {
                 headers: {
                     'user-key': process.env.API_KEY,
-                }
+                },
+                body: combineOptions(token.options),
             }).pipe(res);
         });
 

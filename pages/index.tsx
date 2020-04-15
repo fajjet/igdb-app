@@ -1,16 +1,22 @@
 import React, { useEffect } from 'react';
 
-
 const Home = () => {
 
+    const fetchData = async () => {
+
+        const result = await fetch('/api/feed', {
+            method: 'POST',
+        });
+
+        return await result.json();
+    };
+
     useEffect(() => {
-        fetch('/api/games/1?fields=name', {
-            method: 'GET',
-        }).then(res => {
-            return res.json();
-        }).then(games => {
-            console.log(games)
+
+        fetchData().then(res => {
+            console.log(res)
         })
+
     }, []);
 
     return (
