@@ -1,8 +1,8 @@
 import next from 'next';
 import express, { Response, Request } from 'express';
-import { ApiOptions } from './types';
-
 import request from 'request-promise';
+
+import { ApiOptions } from './types';
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
