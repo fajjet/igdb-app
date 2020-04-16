@@ -1,27 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { Layout } from 'containers';
+import { GenreCard } from "components";
+import { Genre } from 'types';
 
 const Home = () => {
 
-    const fetchData = async () => {
+  const [ genres, setGenres ] = useState([]);
 
-        const result = await fetch('/api/feed', {
-            method: 'POST',
-        });
+  const fetchData = async () => {
 
-        return await result.json();
-    };
+    const result = await fetch('/api/genres', {
+      method: 'POST',
+    });
 
-    useEffect(() => {
+    return await result.json();
+  };
 
-        fetchData().then(res => {
-            console.log(res)
-        })
+  useEffect(() => {
 
-    }, []);
+    fetchData().then(res => {
+      setGenres(res);
+    })
 
-    return (
-        <div>It works!</div>
-    )
+  }, []);
+
+  return (
+    <Layout>
+      {genres.map((genre: Genre) => {
+        return <GenreCard
+          key={genre.id}
+          { ...genre }
+        />
+      })}
+    </Layout>
+  )
 };
 
 export default Home;

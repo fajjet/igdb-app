@@ -14,13 +14,11 @@ require('dotenv').config();
 const apiURL = 'https://api-v3.igdb.com';
 
 const apiTokens = {
-    feed: {
-        endpoint: '/games',
+    genres: {
+        endpoint: '/genres',
         options: {
             fields: '*',
-            where: 'total_rating > 97',
-            limit: 100,
-            sort: 'total_rating desc'
+            limit: process.env.MAX_REQUEST_LIMIT,
         }
     }
 };
@@ -44,6 +42,7 @@ const combineOptions = (options: ApiOptions) : string => {
             const token = apiTokens[point];
             request(apiURL + token.endpoint, {
                 headers: {
+                    'Accept': 'application/json',
                     'user-key': process.env.API_KEY,
                 },
                 body: combineOptions(token.options),

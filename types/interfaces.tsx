@@ -6,3 +6,9 @@ export interface ApiOptions {
   limit?: number;
   offset?: number;
 }
+
+export interface Genre {
+  id: number;
+  name: string;
+  slug: string;
+}
