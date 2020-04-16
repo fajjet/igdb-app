@@ -23,7 +23,7 @@ const apiTokens = {
     },
 };
 
-const combineOptions = options => {
+const combineOptions = (options) => {
   return Object.keys(options).reduce((acc, name) => {
       const value = options[name];
       return acc + `${name} ${value};`;
