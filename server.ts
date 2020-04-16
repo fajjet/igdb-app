@@ -1,6 +1,8 @@
-const express = require('express');
-const next = require('next');
-const request = require('request');
+import next from 'next';
+import express, { Response, Request } from 'express';
+import { ApiOptions } from './types';
+
+import request from 'request-promise';
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -20,10 +22,10 @@ const apiTokens = {
             limit: 100,
             sort: 'total_rating desc'
         }
-    },
+    }
 };
 
-const combineOptions = (options) => {
+const combineOptions = (options: ApiOptions) : string => {
   return Object.keys(options).reduce((acc, name) => {
       const value = options[name];
       return acc + `${name} ${value};`;
@@ -37,7 +39,7 @@ const combineOptions = (options) => {
 
         server.use(express.json());
 
-        server.all('/api/*', function(req, res) {
+        server.all('/api/*', function(req: Request, res: Response) {
             const point = req.params[0];
             const token = apiTokens[point];
             request(apiURL + token.endpoint, {
@@ -48,11 +50,11 @@ const combineOptions = (options) => {
             }).pipe(res);
         });
 
-        server.all("*", (req, res) => {
+        server.all("*", (req: Request, res: Response) => {
             return handle(req, res);
         });
 
-        server.listen(port, (err) => {
+        server.listen(port, (err?: any) => {
             if (err) throw err;
             console.log(`> Ready on localhost:${port} - env ${process.env.NODE_ENV}`);
         });
