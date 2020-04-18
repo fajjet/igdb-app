@@ -1,8 +1,7 @@
-
-export interface ApiOptions {
-  fields?: string;
-  sort?: string;
-  where?: string;
+export type ApiOptions = {
+  fields?: string | Array<string>;
+  sort?: string | Array<string>;
+  where?: string | Array<string>;
   limit?: number;
   offset?: number;
 }

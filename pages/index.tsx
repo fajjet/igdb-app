@@ -1,39 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import Link from 'next/link';
+import { useGet } from "restful-react";
+import { useDispatch } from "react-redux";
 
-import { Layout } from 'containers';
-import { GenreCard } from "components";
-import { Genre } from 'types';
+import actions from 'store/actions';
+// import { GenreCard } from "components";
+// import { Genre } from 'types';
+// import { api } from 'utils';
 
 const Home = () => {
 
-  const [ genres, setGenres ] = useState([]);
+  const { data } = useGet({
+    path: "/api/feeds",
+  });
 
-  const fetchData = async () => {
-
-    const result = await fetch('/api/genres', {
-      method: 'POST',
-    });
-
-    return await result.json();
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
-
-    fetchData().then(res => {
-      setGenres(res);
-    })
-
+    dispatch(actions.setTitle('new title'))
   }, []);
 
   return (
-    <Layout>
-      {genres.map((genre: Genre) => {
-        return <GenreCard
-          key={genre.id}
-          { ...genre }
-        />
+    <>
+      <Link href={'/another'} passHref>
+        <a>another page</a>
+      </Link>
+      {data?.map((el: any) => {
+        return (
+          <div>{el.name}</div>
+        )
       })}
-    </Layout>
+      {/*{genres.map((genre) => {*/}
+      {/*  return <GenreCard*/}
+      {/*    key={genre.id}*/}
+      {/*    { ...genre }*/}
+      {/*  />*/}
+      {/*})}*/}
+    </>
   )
 };
 

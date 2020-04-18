@@ -17,8 +17,16 @@ const apiTokens = {
     genres: {
         endpoint: '/genres',
         options: {
-            fields: '*',
+            fields: 'id, name, slug',
             limit: process.env.MAX_REQUEST_LIMIT,
+        }
+    },
+    feeds: {
+        endpoint: '/games',
+        options: {
+            fields: '*',
+            sort: 'popularity desc',
+            limit: 50,
         }
     }
 };
@@ -26,7 +34,10 @@ const apiTokens = {
 const combineOptions = (options: ApiOptions) : string => {
   return Object.keys(options).reduce((acc, name) => {
       const value = options[name];
-      return acc + `${name} ${value};`;
+      const option = Array.isArray(value) ?
+        value.reduce(((a, v, i) => a + v + (i === value.length - 1 ? '' : ' & ')), '') :
+        value;
+      return acc + `${name} ${option};`;
   }, '');
 };
 
@@ -40,12 +51,14 @@ const combineOptions = (options: ApiOptions) : string => {
         server.all('/api/*', function(req: Request, res: Response) {
             const point = req.params[0];
             const token = apiTokens[point];
+            const body = combineOptions(token.options);
+            console.log(body)
             request(apiURL + token.endpoint, {
                 headers: {
                     'Accept': 'application/json',
                     'user-key': process.env.API_KEY,
                 },
-                body: combineOptions(token.options),
+                body,
             }).pipe(res);
         });
 

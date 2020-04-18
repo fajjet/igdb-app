@@ -4,7 +4,7 @@ import { provider } from 'styles';
 const GenreCard: any = {};
 
 GenreCard.Root = styled.div`
-  color: ${provider.color.RED};
+  color: ${provider.color.red};
 `;
 
 export default GenreCard;
