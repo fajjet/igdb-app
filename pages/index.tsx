@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
-import { useGet } from "restful-react";
 import { useDispatch } from "react-redux";
 
 import actions from 'store/actions';
@@ -9,10 +8,6 @@ import actions from 'store/actions';
 // import { api } from 'utils';
 
 const Home = () => {
-
-  const { data } = useGet({
-    path: "/api/feeds",
-  });
 
   const dispatch = useDispatch();
 
@@ -25,11 +20,11 @@ const Home = () => {
       <Link href={'/another'} passHref>
         <a>another page</a>
       </Link>
-      {data?.map((el: any) => {
-        return (
-          <div>{el.name}</div>
-        )
-      })}
+      {/*{data?.map((el: any) => {*/}
+      {/*  return (*/}
+      {/*    <div>{el.name}</div>*/}
+      {/*  )*/}
+      {/*})}*/}
       {/*{genres.map((genre) => {*/}
       {/*  return <GenreCard*/}
       {/*    key={genre.id}*/}

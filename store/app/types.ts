@@ -1,18 +1,17 @@
-import { AnyAction} from "redux";
 
 enum Types {
   SET_TITLE = 'SET_TITLE',
   CHANGE_DIMENSIONS = 'CHANGE_DIMENSIONS',
 }
 
-interface SetTitle extends AnyAction{
+interface SetTitle {
   type: typeof Types.SET_TITLE;
   payload: {
     title: string;
   };
 }
 
-interface changeDimensions extends AnyAction {
+interface changeDimensions {
   type: typeof Types.CHANGE_DIMENSIONS;
   payload: {
     width: number;
