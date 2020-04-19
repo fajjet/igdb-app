@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import actions from 'store/actions';
-// import { GenreCard } from "components";
+import { State } from "store/initialState";
+import { fetchGenres } from "utils/api";
+import { GenreCard } from "components";
 // import { Genre } from 'types';
 // import { api } from 'utils';
 
 const Home = () => {
 
   const dispatch = useDispatch();
+  const genres = useSelector((state: State) => state.genres);
 
   useEffect(() => {
-    dispatch(actions.setTitle('new title'))
+    genres.list === null && dispatch(fetchGenres());
   }, []);
 
   return (
@@ -20,17 +22,12 @@ const Home = () => {
       <Link href={'/another'} passHref>
         <a>another page</a>
       </Link>
-      {/*{data?.map((el: any) => {*/}
-      {/*  return (*/}
-      {/*    <div>{el.name}</div>*/}
-      {/*  )*/}
-      {/*})}*/}
-      {/*{genres.map((genre) => {*/}
-      {/*  return <GenreCard*/}
-      {/*    key={genre.id}*/}
-      {/*    { ...genre }*/}
-      {/*  />*/}
-      {/*})}*/}
+      {genres.list && genres.list.map((genre) => {
+        return <GenreCard
+          key={genre.id}
+          { ...genre }
+        />
+      })}
     </>
   )
 };

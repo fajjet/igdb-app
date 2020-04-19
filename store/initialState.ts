@@ -1,11 +1,13 @@
+import { Genre } from "types";
+
 export interface State {
   app: {
     title: string;
     width: number | null;
     height: number | null;
   },
-  other: {
-    property: number;
+  genres: {
+    list: Array<Genre> | null;
   }
 }
 
@@ -15,8 +17,8 @@ const initialState: State = {
     width: null,
     height: null,
   },
-  other: {
-    property: 999
+  genres: {
+    list: null,
   }
 };
 
