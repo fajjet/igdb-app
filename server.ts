@@ -13,24 +13,6 @@ require('dotenv').config();
 
 const apiURL = 'https://api-v3.igdb.com';
 
-const apiTokens = {
-    genres: {
-        endpoint: '/genres',
-        options: {
-            fields: 'id, name, slug',
-            limit: process.env.MAX_REQUEST_LIMIT,
-        }
-    },
-    feeds: {
-        endpoint: '/games',
-        options: {
-            fields: '*',
-            sort: 'popularity desc',
-            limit: 50,
-        }
-    }
-};
-
 const combineOptions = (options: ApiOptions) : string => {
   return Object.keys(options).reduce((acc, name) => {
       const value = options[name];
@@ -41,6 +23,10 @@ const combineOptions = (options: ApiOptions) : string => {
   }, '');
 };
 
+const defaultBodyOptions = {
+    limit: process.env.MAX_REQUEST_LIMIT,
+};
+
 (async () => {
     try {
         await app.prepare();
@@ -48,12 +34,12 @@ const combineOptions = (options: ApiOptions) : string => {
 
         server.use(express.json());
 
-        server.all('/api/*', function(req: Request, res: Response) {
+        server.all('/api*', function(req: Request, res: Response) {
             const point = req.params[0];
-            const token = apiTokens[point];
-            const body = combineOptions(token.options);
-            console.log(body)
-            request(apiURL + token.endpoint, {
+            const requestBody = req.body || {};
+            const body = combineOptions({ ...defaultBodyOptions, ...requestBody });
+            console.log('body = ' + body);
+            request(apiURL + point, {
                 headers: {
                     'Accept': 'application/json',
                     'user-key': process.env.API_KEY,

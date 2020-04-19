@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { State } from "store/initialState";
-import { fetchGenres } from "utils/api";
-import { GenreCard } from "components";
-// import { Genre } from 'types';
-// import { api } from 'utils';
+// import { GenreCard } from "components";
+import { fetchMostAnticipatedGames } from 'utils/api';
 
 const Home = () => {
 
+  // const genres = useSelector((state: State) => state.genres.list);
+  const games = useSelector((state: State) => state.games.anticipated);
   const dispatch = useDispatch();
-  const genres = useSelector((state: State) => state.genres);
 
   useEffect(() => {
-    genres.list === null && dispatch(fetchGenres());
+    dispatch(fetchMostAnticipatedGames());
   }, []);
 
   return (
@@ -22,14 +21,13 @@ const Home = () => {
       <Link href={'/another'} passHref>
         <a>another page</a>
       </Link>
-      {genres.list && genres.list.map((genre) => {
-        return <GenreCard
-          key={genre.id}
-          { ...genre }
-        />
+      {games?.map((game) => {
+        return (
+          <div>{game?.name}</div>
+        )
       })}
     </>
   )
 };
 
-export default Home;
+export default React.memo(Home);

@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from "react-redux";
 
-import { Layout } from 'containers';
+import { fetchGenres } from "utils/api";
 
 type Props = {
   children: React.ReactNode;
 };
 
 const Page = (props: Props) => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchGenres());
+    return () => {
+      console.log('unmounted')
+    }
+  }, []);
+
   return (
-    <Layout>
+    <>
+      <div>Header</div>
       {props.children}
-    </Layout>
+      <div>footer</div>
+    </>
   )
 };
 
-export default Page;
+export default React.memo(Page);

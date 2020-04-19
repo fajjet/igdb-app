@@ -1,11 +1,11 @@
-import ACTION from './types';
-import { AnyAction } from "redux";
-import initialState from '../initialState';
+import ACTION, { GenresActionTypes } from './types';
+// import { AnyAction } from "redux";
+import initialState, { State } from '../initialState';
 
 export default function GenresReducer(
   state = initialState.genres,
-  action: AnyAction,
-) {
+  action: GenresActionTypes,
+) : State['genres'] {
   switch (action.type) {
     case ACTION.UPDATE_GENRES: {
       const { genres } = action.payload;

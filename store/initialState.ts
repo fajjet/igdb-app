@@ -8,6 +8,9 @@ export interface State {
   },
   genres: {
     list: Array<Genre> | null;
+  },
+  games: {
+    anticipated: Array<any> | null,
   }
 }
 
@@ -19,7 +22,10 @@ const initialState: State = {
   },
   genres: {
     list: null,
-  }
+  },
+  games: {
+    anticipated: null,
+  },
 };
 
 export default initialState;
