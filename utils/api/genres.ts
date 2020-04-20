@@ -1,4 +1,4 @@
-import { Dispatch } from "redux";
+import { Dispatch  } from "redux";
 
 import actions from 'store/actions';
 

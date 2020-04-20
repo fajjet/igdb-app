@@ -9,13 +9,12 @@ interface Props extends Game {
 }
 
 const GameCard = (props: Props) => {
-  const { name, cover } = props;
+  const { cover } = props;
 
   const imageUrl = getImageUrl(cover, ImageSizes.fhd);
 
   return (
-    <Styled.Root>
-      {name}
+    <Styled.Root as={'article'}>
       <Styled.Cover>
         <img src={imageUrl} alt={''}/>
       </Styled.Cover>

@@ -1,7 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 
 enum Color {
-    red = 'red'
+    blackText = '#373737',
+    blackHeading = '#191919'
 }
 
 export default {

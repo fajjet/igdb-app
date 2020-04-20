@@ -8,11 +8,36 @@ body {
   word-break: break-word;
   word-wrap: break-word;
   font-size: 16px;
-  font-family: 'Roboto Slab', 'sans-serif';
+  font-family: 'Inter', 'sans-serif';
+  color: #373737;
 }
 
 *,
 *::after,
 *::before {
   box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.content-wrapper {
+  max-width: 1300px;
+  box-sizing: content-box;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+@media screen and (max-width: 800px) {
+  .content-wrapper {
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .content-wrapper {
+    padding: 0 20px;
+  }
 }
