@@ -1,10 +1,9 @@
-import ACTION from './types';
-import { AnyAction } from "redux";
+import ACTION, { AppActionTypes } from './types';
 import initialState, { State } from '../initialState';
 
 export default function AppReducer(
   state = initialState.app,
-  action: AnyAction,
+  action: AppActionTypes,
 ) : State['app'] {
   switch (action.type) {
     case ACTION.SET_TITLE:

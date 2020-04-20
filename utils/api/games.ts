@@ -1,5 +1,6 @@
 import { Dispatch } from "redux";
 
+import { fetchCoversByArrayOfIds } from "./covers";
 import actions from 'store/actions';
 
 export const fetchMostAnticipatedGames = () => {
@@ -18,6 +19,9 @@ export const fetchMostAnticipatedGames = () => {
       }),
     });
     const games = await response.json();
-    dispatch(actions.setAnticipatedGames(games));
+    const coverIds = games.map((g: any) => g.cover);
+    const covers = await fetchCoversByArrayOfIds(coverIds);
+    const gamesWithCovers = games.map((g: any, index: number) => ({ ...g, cover: covers[index] }));
+    dispatch(actions.setAnticipatedGames(gamesWithCovers));
   }
 };

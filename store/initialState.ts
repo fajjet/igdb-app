@@ -1,4 +1,4 @@
-import { Genre } from "types";
+import { Genre, Game } from "types";
 
 export interface State {
   app: {
@@ -10,7 +10,7 @@ export interface State {
     list: Array<Genre> | null;
   },
   games: {
-    anticipated: Array<any> | null,
+    anticipated: Array<Game> | null,
   }
 }
 

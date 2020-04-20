@@ -1,7 +1,7 @@
-import ACTIONS from './types';
-import { AnyAction } from "redux";
+import ACTIONS, { GameActionTypes } from './types';
+import { Game } from 'types';
 
-export const setAnticipatedGames = (games: any): AnyAction => {
+export const setAnticipatedGames = (games: Array<Game>): GameActionTypes => {
   return {
     type: ACTIONS.SET_ANTICIPATED_GAMES,
     payload: {

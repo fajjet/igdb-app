@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
-import Link from 'next/link';
 import { useSelector, useDispatch } from "react-redux";
 
 import { State } from "store/initialState";
-// import { GenreCard } from "components";
+import { Home } from 'containers';
 import { fetchMostAnticipatedGames } from 'utils/api';
 
-const Home = () => {
+const HomePage = () => {
 
-  // const genres = useSelector((state: State) => state.genres.list);
   const games = useSelector((state: State) => state.games.anticipated);
   const dispatch = useDispatch();
 
@@ -17,17 +15,10 @@ const Home = () => {
   }, []);
 
   return (
-    <>
-      <Link href={'/another'} passHref>
-        <a>another page</a>
-      </Link>
-      {games?.map((game) => {
-        return (
-          <div>{game?.name}</div>
-        )
-      })}
-    </>
+    <Home
+      games={games}
+    />
   )
 };
 
-export default React.memo(Home);
+export default React.memo(HomePage);

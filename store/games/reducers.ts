@@ -1,10 +1,9 @@
-import ACTION from './types';
-import { AnyAction } from "redux";
+import ACTION, { GameActionTypes } from './types';
 import initialState, { State } from '../initialState';
 
 export default function GamesReducer(
   state = initialState.games,
-  action: AnyAction,
+  action: GameActionTypes,
 ) :  State['games'] {
   switch (action.type) {
     case ACTION.SET_ANTICIPATED_GAMES: {

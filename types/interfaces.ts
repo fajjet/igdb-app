@@ -11,3 +11,11 @@ export interface Genre {
   name: string;
   slug: string;
 }
+
+export interface Game {
+  id: number;
+  cover: string;
+  name: string;
+  slug: string;
+  genres: Array<number>;
+}
