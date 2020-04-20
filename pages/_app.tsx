@@ -3,7 +3,7 @@ import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import { Router } from 'next/router';
-import 'styles/reset.css';
+import 'normalize.css';
 import 'styles/global.css';
 import 'styles/fonts.css';
 
@@ -30,4 +30,5 @@ const App = (props: Props) => {
   )
 };
 
+// @ts-ignore
 export default withRedux(initStore)(React.memo(App));
