@@ -18,4 +18,12 @@ export interface Game {
   name: string;
   slug: string;
   genres: Array<number>;
+  firstReleaseDate: number;
+  hypes: number;
 }
+
+export interface Cover {
+  id: number;
+  imageId: number;
+}
+

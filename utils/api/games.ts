@@ -12,16 +12,23 @@ export const fetchMostAnticipatedGames = () => {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
-        fields: '*',
+        fields: 'id, name, cover, slug, genres, first_release_date, hypes',
         where: [`first_release_date > ${Math.round(now / 1000)}`, 'hypes != null'],
         sort: 'hypes desc',
-        limit: 10,
+        limit: 12,
       }),
     });
     const games = await response.json();
     const coverIds = games.map((g: any) => g.cover);
     const covers = await fetchCoversByArrayOfIds(coverIds);
-    const gamesWithCovers = games.map((g: any, index: number) => ({ ...g, cover: covers[index] }));
+    const gamesWithCovers = games.map((game: any) => {
+      const cover = covers.find(c => c.id === game.cover);
+      return {
+        ...game,
+        cover: cover?.imageId,
+        firstReleaseDate: game.first_release_date,
+      };
+    });
     dispatch(actions.setAnticipatedGames(gamesWithCovers));
   }
 };

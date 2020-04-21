@@ -3,13 +3,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 300;
-  background-color: white;
   line-height: 1.5;
   word-break: break-word;
   word-wrap: break-word;
   font-size: 16px;
   font-family: 'Inter', 'sans-serif';
   color: #373737;
+  background-color: #e9f6f8;
 }
 
 *,
