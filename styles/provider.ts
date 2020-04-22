@@ -3,13 +3,16 @@ import { createGlobalStyle } from 'styled-components';
 enum Color {
     blackText = '#373737',
 
+    purple = '#8b54b5',
+    purple700 = '#6e5580',
+
     aquamarineTextOnBlackCover = '#b9e4e7',
     aquamarineHeading = '#83afb3',
     aquamarine300 = '#398c94',
     aquamarine = '#398c94',
     aquamarine700 = '#386b70',
 
-    footerBackground = '#d2e9ed',
+    footerBackground = 'white',
 }
 
 export default {

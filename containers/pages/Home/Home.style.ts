@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { provider } from 'styles';
+// import { provider } from 'styles';
 
 const Home: any = {};
 
@@ -8,18 +8,10 @@ Home.Root = styled.div`
   min-height: 100vh;
 `;
 
-Home.Title = styled.div`
-  font-size: 3.5rem;
-  font-weight: 900;
-  padding-bottom: 1rem;
-  color: ${provider.color.aquamarineHeading};
-  margin-top: 0;
-`;
-
 Home.Grid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1rem;
+  grid-template-columns: repeat( auto-fit, minmax(320px, 1fr) );
 `;
 
 Home.Game = styled.div`

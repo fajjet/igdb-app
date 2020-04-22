@@ -1,5 +1,6 @@
 import { Dispatch } from "redux";
 
+import { Game } from 'types';
 import { fetchCoversByArrayOfIds } from "./covers";
 import actions from 'store/actions';
 
@@ -21,7 +22,7 @@ export const fetchMostAnticipatedGames = () => {
     const games = await response.json();
     const coverIds = games.map((g: any) => g.cover);
     const covers = await fetchCoversByArrayOfIds(coverIds);
-    const gamesWithCovers = games.map((game: any) => {
+    const gamesWithCovers = games.map((game: any): Array<Game> => {
       const cover = covers.find(c => c.id === game.cover);
       return {
         ...game,
@@ -30,5 +31,22 @@ export const fetchMostAnticipatedGames = () => {
       };
     });
     dispatch(actions.setAnticipatedGames(gamesWithCovers));
+  }
+};
+
+export const fetchDetailGameBySlug = (slug: string) => {
+  return async (dispatch: Dispatch) => {
+    const response = await fetch('/api/games', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        fields: '*',
+        where: `slug = "${slug}"`,
+      }),
+    });
+    const game = response.json();
+    console.log(game)
   }
 };

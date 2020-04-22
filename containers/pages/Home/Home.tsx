@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { State } from 'store/initialState';
 import { Game } from "types";
 import { getRelativeHypeLevel } from 'utils';
-import { GameCard, Loader } from "components";
+import { GameCard, Loader, Text } from "components";
 import Styled from './Home.style';
 
 interface Props {
@@ -19,7 +19,7 @@ const Home = (props: Props) => {
   return (
     <Styled.Root>
       <div className={'content-wrapper'}>
-        <Styled.Title as={'h1'}>Most anticipated games</Styled.Title>
+        <Text as={'h1'} view={'h1'}>Most anticipated games</Text>
         {games === null && (
           <Loader/>
         )}

@@ -54,7 +54,7 @@ GameCard.Genres = styled.div`
 
 GameCard.Genre = styled.div`
   color: white;
-  background-color: ${provider.color.aquamarine};
+  background-color: ${provider.color.purple700};
   font-size: 10px;
   margin-left: 10px;
   padding: 1px 3px;
@@ -75,7 +75,7 @@ GameCard.Date = styled.div`
 
 GameCard.Hype = styled.div`
   position: absolute;
-  bottom: calc(50% - 1rem);
+  bottom: calc(50% - 0.5rem);
   left: 0;
   width: 100%;
   height: 1rem;
@@ -98,13 +98,13 @@ GameCard.Hype = styled.div`
     width: 100%;
     justify-content: flex-end;
     padding-right: 5px;
-    flex-shrink: 0;
+    white-space: nowrap;
   }
 `;
 
 const g = {
   c2: 'white',
-  c1: provider.color.aquamarine,
+  c1: provider.color.purple,
 };
 
 GameCard.HypeBar = styled.div<{ level: number }>`
