@@ -1,13 +1,33 @@
 import React from 'react';
 
-import {Text} from "components";
+import {GameDetail, ImageSizes} from 'types';
+import {Loader, Text} from "components";
+import {getImageUrl} from "utils";
 import Styled from './Game.style';
 
-const Game = (props: any) => {
+interface Props {
+  data: GameDetail | null;
+  error: boolean;
+}
+
+const Game = (props: Props) => {
+  const { data, error } = props;
   return (
     <Styled.Root>
       <div className={'content-wrapper'}>
-        <Text as={'h1'} view={'h1'}>Game</Text>
+        {!data && !error && (
+          <Loader/>
+        )}
+        {error && (
+          <Text as={'h1'} view={'h1'}>404: Game not found</Text>
+        )}
+        {data && (
+          <>
+            <Text as={'h1'} view={'h1'}>{data.name}</Text>
+            <br/>
+            <img src={getImageUrl(data.cover, ImageSizes.fhd)} alt={data.name + ' cover'}/>
+          </>
+        )}
       </div>
     </Styled.Root>
   )

@@ -1,4 +1,8 @@
-import { Genre, Game } from "types";
+import { Genre, Game, GameDetail } from "types";
+
+interface DetailGame {
+  [key: string]: GameDetail;
+}
 
 export interface State {
   app: {
@@ -11,6 +15,7 @@ export interface State {
   },
   games: {
     anticipated: Array<Game> | null,
+    detail: DetailGame;
   }
 }
 
@@ -25,6 +30,7 @@ const initialState: State = {
   },
   games: {
     anticipated: null,
+    detail: {},
   },
 };
 

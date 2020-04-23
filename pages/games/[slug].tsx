@@ -1,27 +1,50 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import Head from 'next/head'
 import { useRouter } from 'next/router';
-import { useDispatch } from "react-redux";
 
+import actions from 'store/actions';
+import { State } from "store/initialState";
 import { fetchDetailGameBySlug } from 'utils/api';
 import { Game } from 'containers';
 
-const GamePage = (props: any) => {
+const GamePage = () => {
+
+  const [error, setError] = useState(false);
+  const router = useRouter();
+  const slug = String(router.query.slug);
 
   const dispatch = useDispatch();
-  const router = useRouter();
-  const { slug } = router.query;
+  const games = useSelector((state: State) => state.games.detail);
+  const game = games[slug];
 
-  console.log(slug)
+  const fetchData = async () => {
+    if (!game) {
+      const response = await fetchDetailGameBySlug(slug);
+      if (response) {
+        dispatch(actions.addGame(response));
+      } else {
+        setError(true);
+      }
+    }
+  };
 
   useEffect(() => {
-    dispatch(fetchDetailGameBySlug(Array.isArray(slug) ? '' : slug));
+    fetchData();
   }, []);
 
   return (
     <>
-      <Game/>
+      <Head>
+        <title>{game?.name}</title>
+        <meta name="description" content={game?.summary} />
+      </Head>
+      <Game
+        data={game}
+        error={error}
+      />
     </>
   )
 };
 
-export default React.memo(GamePage);
+export default GamePage;

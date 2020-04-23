@@ -11,6 +11,7 @@ Text.Root = styled.div<{ view: View }>`
     font-size: 3.5rem;
     font-weight: 900;
     color: ${provider.color.aquamarineHeading};
+    margin: 0 0 1.5rem 0;
   `}
 `;
 

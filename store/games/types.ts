@@ -1,7 +1,8 @@
-import { Game } from "types";
+import { Game, GameDetail } from "types";
 
 enum Types {
   SET_ANTICIPATED_GAMES = 'SET_ANTICIPATED_GAMES',
+  ADD_GAME = 'ADD_GAME'
 }
 
 interface setAnticipatedGames {
@@ -11,6 +12,13 @@ interface setAnticipatedGames {
   }
 }
 
-export type GameActionTypes = setAnticipatedGames;
+interface addGame {
+  type: typeof Types.ADD_GAME,
+  payload: {
+    game: GameDetail,
+  }
+}
+
+export type GameActionTypes = setAnticipatedGames | addGame;
 
 export default Types;

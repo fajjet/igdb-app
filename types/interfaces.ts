@@ -12,54 +12,27 @@ export interface Genre {
   slug: string;
 }
 
-export interface GameResponseFields {
-  id?: number | any;
-  age_ratings?: Array<number> | any;
-  artworks?: Array<number> | any;
-  category?: number | any;
-  cover?: number | any;
-  created_at?: number | any;
-  external_games?: Array<number> | any;
-  first_release_date?: number | any;
-  franchise?: number | any;
-  franchises?: Array<number> | any;
-  game_engines?: Array<number> | any;
-  game_modes?: Array<number> | any;
-  genres?: Array<number> | any;
-  hypes?: number | any;
-  involved_companies?: Array<number> | any;
-  keywords?: Array<number> | any;
-  name?: string | any;
-  platforms?: Array<number> | any;
-  player_perspectives?: Array<number> | any;
-  popularity?: number | any;
-  pulse_count?: number | any;
-  release_dates?: Array<number> | any;
-  screenshots?: Array<number> | any;
-  similar_games?: Array<number> | any;
-  slug?: string | any;
-  storyline?: string | any;
-  summary?: string | any;
-  tags?: Array<number> | any;
-  themes?: Array<number> | any;
-  updated_at?: number | any;
-  url?: string | any;
-  videos?: Array<number> | any;
-  websites?: Array<number> | any;
-}
-
 export interface Game {
   id: number;
   cover: string;
   name: string;
   slug: string;
   genres: Array<number>;
-  firstReleaseDate: number;
   hypes: number;
+  firstReleaseDate: number;
+}
+
+export interface GameDetail extends Game {
+  summary: string;
+  rating: number;
+}
+
+export interface GameResponse extends Omit<Game, 'cover'>{
+  cover: number;
 }
 
 export interface Cover {
   id: number;
-  imageId: number;
+  imageId: string;
 }
 

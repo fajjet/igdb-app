@@ -3,12 +3,13 @@ import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import { Router } from 'next/router';
-import 'normalize.css';
-import 'styles/global.css';
-import 'styles/fonts.css';
 
 import{ initStore } from 'store';
 import { Page } from 'containers';
+
+import 'normalize.css';
+import 'styles/global.css';
+import 'styles/fonts.css';
 
 interface Props extends AppProps {
   store: any;
@@ -31,4 +32,4 @@ const App = (props: Props) => {
 };
 
 // @ts-ignore
-export default withRedux(initStore)(React.memo(App));
+export default withRedux(initStore)(App);
