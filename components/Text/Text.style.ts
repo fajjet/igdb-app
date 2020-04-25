@@ -7,11 +7,11 @@ const Text: any = {};
 Text.Root = styled.div<{ view: View }>`
   text-transform: inherit;
   display: inline-block;
+  margin: 0;
   ${props => props.view === 'h1' && css`
     font-size: 3.5rem;
     font-weight: 900;
     color: ${provider.color.aquamarineHeading};
-    margin: 0 0 1.5rem 0;
   `}
 `;
 

@@ -6,20 +6,8 @@ const GameCard: any = {};
 GameCard.Root = styled.div`
   padding-top: 130%;
   position: relative;
-  background-color: rgba(0,0,0,0.05);
+  background-color: ${provider.hexToRgba(provider.color.aquamarine, 0.15)};
   overflow: hidden;
-  
-  // &:before {
-  //   content: '';
-  //   position: absolute;
-  //   bottom: 0;
-  //   right: 0;
-  //   background-color: ${provider.color.aquamarine};
-  //   height: 1rem;
-  //   width: 1rem;
-  //   z-index: 1;
-  // }
-  
 `;
 
 GameCard.Cover = styled.div`

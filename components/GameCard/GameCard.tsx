@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Game, ImageSizes, Genre } from 'types';
 
 import { getImageUrl } from "utils";
@@ -10,16 +10,28 @@ interface Props extends Omit<Game, 'genres'> {
 }
 
 const GameCard = (props: Props) => {
-  const { cover, hypeLevel, firstReleaseDate, genres } = props;
+  const { cover, hypeLevel, firstReleaseDate, genres, name } = props;
 
-  const imageUrl = getImageUrl(cover, ImageSizes.fhd);
+  const fhdImage = getImageUrl(cover, ImageSizes.fhd);
+  const smallImage = getImageUrl(cover, ImageSizes.coverSmall);
+
+  const [image, setImage] = useState(smallImage);
+
   const date = process.browser && new Date(firstReleaseDate * 1000);
   const releaseDate = date && new Intl.DateTimeFormat('en-US').format(date);
+
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => {
+      setImage(fhdImage);
+    };
+    img.src = fhdImage;
+  }, []);
 
   return (
     <Styled.Root as={'article'}>
       <Styled.Cover>
-        <img src={imageUrl} alt={''}/>
+        <img src={image} alt={`${name} cover`}/>
       </Styled.Cover>
       <Styled.Date>
         {releaseDate}

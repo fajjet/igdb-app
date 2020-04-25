@@ -22,9 +22,31 @@ export interface Game {
   firstReleaseDate: number;
 }
 
+export interface InvolvedCompany {
+  company: number;
+  developer: boolean;
+  porting: boolean;
+  publisher: boolean;
+  supporting: boolean;
+}
+
+export interface Company {
+  id: number;
+  country: number;
+  description: string;
+  developed: Array<number>;
+  logo: number;
+  name: string;
+  slug: string;
+}
+
 export interface GameDetail extends Game {
   summary: string;
+  storyline: string;
   rating: number;
+  gameModes: Array<number>;
+  platforms: Array<number>;
+  involvedCompanies: Array<InvolvedCompany>;
 }
 
 export interface GameResponse extends Omit<Game, 'cover'>{
@@ -36,3 +58,19 @@ export interface Cover {
   imageId: string;
 }
 
+export interface Platform {
+  id: number;
+  name: string;
+  slug: string;
+  logo?: string;
+}
+
+export interface PlatformResponse extends Omit<Platform, 'logo'>{
+  platformLogo: number;
+}
+
+export interface GameMode {
+  id: number;
+  name: string;
+  slug: string;
+}

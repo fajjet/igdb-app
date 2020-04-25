@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 
 import appReducers from './app/reducers';
-import genresReducers from './genres/reducers';
+import staticReducers from './static/reducers';
 import gamesReducers from './games/reducers';
+import companiesReducers from './companies/reducers';
 
 export default combineReducers({
   app: appReducers,
-  genres: genresReducers,
+  static: staticReducers,
   games: gamesReducers,
+  companies: companiesReducers,
 });

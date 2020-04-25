@@ -11,7 +11,9 @@ const HomePage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchMostAnticipatedGames());
+    if (games === null) {
+      dispatch(fetchMostAnticipatedGames());
+    }
   }, []);
 
   return (

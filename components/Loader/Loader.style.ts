@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-// import { provider } from 'styles';
+import { provider } from 'styles';
 
 const Loader: any = {};
 
 Loader.Root = styled.div`
   height: 18px;
   width: 18px;
-  border: 1px solid black;
+  border: 1px solid ${provider.color.aquamarine};
   @keyframes loaderAnimation {
     0%{
       transform: rotate(0deg);

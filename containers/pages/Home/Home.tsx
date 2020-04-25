@@ -14,12 +14,12 @@ interface Props {
 
 const Home = (props: Props) => {
   const { games } = props;
-  const genres = useSelector((state: State) => state.genres.list);
+  const genres = useSelector((state: State) => state.static.genres);
 
   return (
     <Styled.Root>
       <div className={'content-wrapper'}>
-        <Text as={'h1'} view={'h1'}>Most anticipated games</Text>
+        <Text as={'h1'} view={'h1'} style={{ marginBottom: '2rem' }}>Most anticipated games</Text>
         {games === null && (
           <Loader/>
         )}

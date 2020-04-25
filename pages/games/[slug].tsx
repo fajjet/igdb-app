@@ -20,7 +20,7 @@ const GamePage = () => {
 
   const fetchData = async () => {
     if (!game) {
-      const response = await fetchDetailGameBySlug(slug);
+      const response = await fetchDetailGameBySlug(slug, dispatch);
       if (response) {
         dispatch(actions.addGame(response));
       } else {

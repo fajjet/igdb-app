@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from "react-redux";
 
-import { fetchGenres } from "utils/api";
+import { fetchStaticData } from "utils/api";
 import { Header, Footer } from 'containers';
 
 type Props = {
@@ -13,7 +13,7 @@ const Page = (props: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchGenres());
+    dispatch(fetchStaticData());
   }, []);
 
   return (
