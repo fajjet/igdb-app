@@ -65,7 +65,6 @@ export const fetchPlatforms = async () => {
 
 export const fetchStaticData = () => {
   return async (dispatch: Dispatch) => {
-
     const genres = await fetchGenres();
     dispatch(actions.setGenres(genres));
 

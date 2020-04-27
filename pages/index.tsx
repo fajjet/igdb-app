@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import Head from 'next/head';
 
 import { State } from "store/initialState";
 import { Home } from 'containers';
@@ -17,9 +18,12 @@ const HomePage = () => {
   }, []);
 
   return (
-    <Home
-      games={games}
-    />
+    <>
+      <Head>
+        <title>Home page</title>
+      </Head>
+      <Home games={games} />
+    </>
   )
 };
 

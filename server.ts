@@ -38,7 +38,7 @@ const defaultBodyOptions = {
             const point = req.params[0];
             const requestBody = req.body || {};
             const body = combineOptions({ ...defaultBodyOptions, ...requestBody });
-            console.log('body = ' + body);
+            console.log(point + ' : body = ' + body);
             request(apiURL + point, {
                 headers: {
                     'Accept': 'application/json',

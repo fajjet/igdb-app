@@ -12,11 +12,15 @@ export interface Genre {
   slug: string;
 }
 
-export interface Game {
+export interface GameBase {
   id: number;
-  cover: string;
+  cover: number;
+  coverHash?: string;
   name: string;
   slug: string;
+}
+
+export interface Game extends GameBase{
   genres: Array<number>;
   hypes: number;
   firstReleaseDate: number;
@@ -44,18 +48,30 @@ export interface GameDetail extends Game {
   summary: string;
   storyline: string;
   rating: number;
+  totalRating: number;
+  status: number;
+  category: number;
   gameModes: Array<number>;
+  gameEngines: Array<number>;
   platforms: Array<number>;
-  involvedCompanies: Array<InvolvedCompany>;
-}
-
-export interface GameResponse extends Omit<Game, 'cover'>{
-  cover: number;
+  screenshots: Array<number>;
+  involvedCompanies: Array<number>;
+  similarGames: Array<number>;
+  involvedCompaniesData?: Array<InvolvedCompany>;
+  gameEnginesData?: Array<GameEngine>;
+  similarGamesData?: Array<GameBase>
+  screenshotsData?: Array<Screenshot>;
 }
 
 export interface Cover {
   id: number;
   imageId: string;
+}
+
+export interface GameEngine {
+  id: number;
+  name: string;
+  slug: string;
 }
 
 export interface Platform {
@@ -73,4 +89,9 @@ export interface GameMode {
   id: number;
   name: string;
   slug: string;
+}
+
+export interface Screenshot {
+  id: number;
+  imageId: string;
 }

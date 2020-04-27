@@ -19,7 +19,7 @@ const Home = (props: Props) => {
   return (
     <Styled.Root>
       <div className={'content-wrapper'}>
-        <Text as={'h1'} view={'h1'} style={{ marginBottom: '2rem' }}>Most anticipated games</Text>
+        <Text as={'h1'} view={'h1'} style={{ marginBottom: '3rem', lineHeight: '1.15' }}>Most anticipated games</Text>
         {games === null && (
           <Loader/>
         )}

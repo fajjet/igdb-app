@@ -24,6 +24,21 @@ export default function GamesReducer(
         }
       };
     }
+    case ACTION.BIND_SIMILAR_GAMES_DATA: {
+      const { similarGamesData, slug } = action.payload;
+      const games = state.detail;
+      const game = games[slug];
+      return {
+        ...state,
+        detail: {
+          ...games,
+          [slug]: {
+            ...game,
+            similarGamesData,
+          }
+        }
+      };
+    }
     default:
       return state
   }

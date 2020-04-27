@@ -4,3 +4,4 @@ export { default as Footer } from './core/Footer/Footer';
 
 export { default as Home } from './pages/Home/Home';
 export { default as Game } from './pages/Game/Game';
+export { default as Company } from './pages/Company/Company';

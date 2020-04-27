@@ -6,3 +6,23 @@ export enum ImageSizes {
   hd = '720p',
   fhd = '1080p',
 }
+
+export enum GameCategories {
+  'Main game',
+  'DLC',
+  'Expansion',
+  'Bundle',
+  'Standalone expansion',
+  'Mod',
+  'Episode',
+}
+
+export enum GameStatuses {
+  'Released',
+  'Alpha',
+  'Beta',
+  'Early access',
+  'Offline',
+  'Cancelled',
+  'Rumored',
+};

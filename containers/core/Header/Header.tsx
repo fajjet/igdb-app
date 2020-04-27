@@ -10,9 +10,6 @@ const Header = () => {
         <Link href={'/'} passHref>
           <Styled.Link>Home</Styled.Link>
         </Link>
-        <Link href={'/another'} passHref>
-          <Styled.Link>Another</Styled.Link>
-        </Link>
       </Styled.Wrapper>
     </Styled.Root>
   )

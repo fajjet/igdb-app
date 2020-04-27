@@ -10,10 +10,10 @@ interface Props extends Omit<Game, 'genres'> {
 }
 
 const GameCard = (props: Props) => {
-  const { cover, hypeLevel, firstReleaseDate, genres, name } = props;
+  const { coverHash, hypeLevel, firstReleaseDate, genres, name } = props;
 
-  const fhdImage = getImageUrl(cover, ImageSizes.fhd);
-  const smallImage = getImageUrl(cover, ImageSizes.coverSmall);
+  const fhdImage = getImageUrl(coverHash, ImageSizes.fhd);
+  const smallImage = getImageUrl(coverHash, ImageSizes.coverSmall);
 
   const [image, setImage] = useState(smallImage);
 
@@ -39,7 +39,7 @@ const GameCard = (props: Props) => {
       <Styled.Genres>
         {genres?.map(genre => {
           return (
-            <Styled.Genre>
+            <Styled.Genre key={genre.id}>
               {genre.name}
             </Styled.Genre>
           )
