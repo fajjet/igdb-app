@@ -35,16 +35,32 @@ const Game = (props: Props) => {
   const status = typeof data?.status !== 'undefined' && GameStatuses[data.status];
   const rating = data?.totalRating || data?.rating;
 
-  const swiper = useRef<null | Swiper>(null);
+  const similarSwiper = useRef<null | Swiper>(null);
+  const screenshotsSwiper = useRef<null | Swiper>(null);
 
   const image = getImageUrl(data?.coverHash, ImageSizes.fhd);
 
   const getSimilarSwiperContainer = (node: HTMLDivElement) => {
-    if (swiper.current !== null) return false;
-    swiper.current = new Swiper(node, {
+    if (similarSwiper.current !== null) return false;
+    similarSwiper.current = new Swiper(node, {
       slidesPerView: "auto",
+      grabCursor: true,
     });
     return true;
+  };
+
+  const getScreenshotsSwiperContainer = (node: HTMLDivElement) => {
+    if (screenshotsSwiper.current !== null) return false;
+    screenshotsSwiper.current = new Swiper(node, {
+      slidesPerView: 'auto',
+      spaceBetween: 30,
+      grabCursor: true,
+    });
+    return true;
+  };
+
+  const onScreenshotSlideClick = (e: React.SyntheticEvent, index: number) => {
+    screenshotsSwiper?.current?.slideTo(index);
   };
 
   const genres  = useSelector((state: State) => state.static.genres);
@@ -106,7 +122,7 @@ const Game = (props: Props) => {
                   <Styled.Rating>
                     <span>Rating:</span>
                     <i>{Math.round(rating)}</i>
-                    <Styled.RatingScale rating={rating}/>
+                    <Styled.RatingScale rating={rating/100}/>
                   </Styled.Rating>
                 )}
                 <InfoItem name={'Genre:'} children={genresArray?.join(', ')}/>
@@ -127,6 +143,29 @@ const Game = (props: Props) => {
               </Styled.ImageColumn>
             </Styled.Grid>
           </div>
+            <Styled.Screenshots as={'section'}>
+              <div className={'content-wrapper'}>
+                <h2>Screenshots</h2>
+                {!!data?.screenshotsData?.length && (
+                  <Styled.ScreenshotsSwiper ref={getScreenshotsSwiperContainer}>
+                    <div className={'swiper-wrapper'}>
+                      {data?.screenshotsData?.map((screenshot, index) => {
+                        const image = getImageUrl(screenshot.imageId, ImageSizes.screenshotBig);
+                        return (
+                          <Styled.ScreenshotSlide
+                            onClick={(e: React.SyntheticEvent) => onScreenshotSlideClick(e, index)}
+                            key={screenshot.id}
+                            className={'swiper-slide'}
+                          >
+                            <img src={image} alt={''}/>
+                          </Styled.ScreenshotSlide>
+                        )
+                      })}
+                    </div>
+                  </Styled.ScreenshotsSwiper>
+                )}
+              </div>
+            </Styled.Screenshots>
             <Styled.Similar as={'section'}>
               <div className={'content-wrapper'}>
                 <h2>Similar games</h2>

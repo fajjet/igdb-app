@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { provider } from 'styles';
-import { colorByProgress } from "utils";
+import { percentageToColor } from "utils";
 
 const Game: any = {};
 
@@ -103,7 +103,6 @@ Game.Storyline = styled.div`
 `;
 
 Game.Similar = styled.div`
-  padding: 2rem 0 1rem 0;
   overflow: hidden;
   max-width: 100%;
   h2 {
@@ -193,12 +192,48 @@ Game.RatingScale = styled.div<{ rating: number }>`
     position: absolute;
     left: 0;
     bottom: 0;
-    height: ${props => props.rating}%;
+    height: ${props => props.rating * 100}%;
     width: 100%;
-    background-color: ${props => colorByProgress(props.rating)};
-    box-shadow: 0 -1px 3px ${provider.color.aquamarine};
+    background-color: ${props => percentageToColor(props.rating, true)};
   }
-  
+`;
+
+Game.Screenshots = styled.div`
+  padding: 1rem 0 3rem 0;
+  overflow: hidden;
+  h2 {
+    opacity: 0.7;
+    margin-bottom: 2.5rem;
+  }
+`;
+
+Game.ScreenshotsSwiper = styled.div`
+  .swiper-wrapper{
+    white-space: nowrap;
+  }
+`;
+
+Game.ScreenshotSlide = styled.div`
+  white-space: normal;
+  display: inline-block;
+  max-width: 100%;
+  opacity: 0.75;
+  filter: grayscale(100%);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  &.swiper-slide-active {
+    opacity: 1;
+    filter: none;
+  }
+  &:not(.swiper-slide-active) {
+     &:hover{
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+  img {
+    max-width: 100%;
+    vertical-align: top;
+  }
 `;
 
 export default Game;

@@ -1,6 +1,8 @@
 export enum ImageSizes {
   micro = 'micro',
   coverSmall = 'cover_small',
+  screenshotBig = 'screenshot_big',
+  screenshotHuge = 'screenshot_huge',
   coverBig = 'cover_big',
   thumb = 'thumb',
   hd = '720p',
