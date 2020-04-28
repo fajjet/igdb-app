@@ -17,7 +17,7 @@ const GameCard = (props: Props) => {
 
   const [image, setImage] = useState(smallImage);
 
-  const date = process.browser && new Date(firstReleaseDate * 1000);
+  const date = process.browser && typeof firstReleaseDate !== 'undefined' && new Date(firstReleaseDate * 1000);
   const releaseDate = date && new Intl.DateTimeFormat('en-US').format(date);
 
   useEffect(() => {

@@ -27,7 +27,7 @@ const Home = (props: Props) => {
           {games?.map((game, index) => {
             const { id, slug } = game;
             const hype = getRelativeHypeLevel(games, index);
-            const gameGenres = genres?.filter(g => game.genres.includes(g.id));
+            const gameGenres = genres?.filter(g => game?.genres?.includes(g.id));
             return (
               <Link href={`/games/[slug]`} as={`/games/${slug}`} passHref key={id}>
                 <Styled.Game as={'a'}>
