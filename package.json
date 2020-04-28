@@ -1,15 +1,13 @@
 {
   "name": "nextjs-github",
   "version": "1",
-  "main": "dist/server.js",
   "author": "fajjet",
   "license": "MIT",
   "private": false,
   "scripts": {
     "dev": "ts-node --project tsconfig.server.json server.ts",
     "build": "next build",
-    "start": "next start",
-    "heroku-postbuild": "npm run build"
+    "start": "NODE_ENV=production node dist/server.js -p $PORT"
   },
   "dependencies": {
     "@types/swiper": "^5.3.0",
