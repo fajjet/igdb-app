@@ -27,9 +27,7 @@
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
     "styled-components": "^5.1.0",
-    "swiper": "^5.3.8"
-  },
-  "devDependencies": {
+    "swiper": "^5.3.8",
     "@babel/plugin-proposal-optional-chaining": "^7.9.0",
     "@types/express": "^4.17.6",
     "@types/node": "^13.11.1",
