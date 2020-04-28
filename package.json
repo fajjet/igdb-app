@@ -1,7 +1,7 @@
 {
   "name": "nextjs-github",
   "version": "1",
-  "main": "index.js",
+  "main": "dist/server.js",
   "author": "fajjet",
   "license": "MIT",
   "private": false,
