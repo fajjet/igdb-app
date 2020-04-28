@@ -20,6 +20,7 @@ const Similar = (props: Props) => {
     swiper.current = new Swiper(node, {
       slidesPerView: "auto",
       grabCursor: true,
+      shortSwipes: true,
     });
     return true;
   };

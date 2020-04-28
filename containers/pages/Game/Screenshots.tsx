@@ -19,6 +19,7 @@ const Screenshots = (props: Props) => {
       slidesPerView: 1,
       spaceBetween: 30,
       grabCursor: true,
+      shortSwipes: true,
     });
     return true;
   };
