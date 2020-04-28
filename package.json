@@ -6,11 +6,9 @@
   "private": false,
   "scripts": {
     "dev": "ts-node --project tsconfig.server.json server.ts",
-    "ts:build": "tsc -p tsconfig.server.json",
-    "next:build": "next build",
-    "start": "node dist/server.js",
-    "heroku-prebuild": "npm run ts:build",
-    "heroku-postbuild": "npm run next:build"
+    "build": "next build && tsc --project tsconfig.server.json",
+    "postinstall": "npm run build",
+    "start": "NODE_ENV=production node dist/server.js"
   },
   "dependencies": {
     "@types/swiper": "^5.3.0",
