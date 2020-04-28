@@ -4,6 +4,7 @@ import { InvolvedCompany, Company } from 'types';
 import actions from 'store/actions';
 
 export const fetchInvolvedCompaniesByIds = async (ids: Array<number>) : Promise<InvolvedCompany[]> => {
+  if (!Array.isArray(ids)) return [];
   const response = await fetch('/api/involved_companies', {
     method: 'POST',
     headers: {
@@ -11,7 +12,7 @@ export const fetchInvolvedCompaniesByIds = async (ids: Array<number>) : Promise<
     },
     body: JSON.stringify({
       fields: '*',
-      where: `id = (${ids})`,
+      where: `id = (${ids.filter(v => !!v)})`,
     }),
   });
   const result = await response.json();
@@ -19,6 +20,7 @@ export const fetchInvolvedCompaniesByIds = async (ids: Array<number>) : Promise<
 };
 
 export const fetchCompaniesByIds = async (ids: Array<number>) : Promise<Company[]> => {
+  if (!Array.isArray(ids)) return [];
   const response = await fetch('/api/companies', {
     method: 'POST',
     headers: {
@@ -26,7 +28,7 @@ export const fetchCompaniesByIds = async (ids: Array<number>) : Promise<Company[
     },
     body: JSON.stringify({
       fields: '*',
-      where: `id = (${ids})`,
+      where: `id = (${ids.filter(v => !!v)})`,
     }),
   });
   const result = await response.json();

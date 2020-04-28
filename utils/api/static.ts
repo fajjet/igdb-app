@@ -5,6 +5,7 @@ import actions from 'store/actions';
 import {keysToCamel} from "../helpers";
 
 export const fetchPlatformLogosByIds = async (ids: Array<number>) : Promise<Cover[]> => {
+  if (!Array.isArray(ids)) return [];
   const response = await fetch('/api/platform_logos', {
     method: 'POST',
     headers: {
@@ -12,7 +13,7 @@ export const fetchPlatformLogosByIds = async (ids: Array<number>) : Promise<Cove
     },
     body: JSON.stringify({
       fields: 'id, image_id',
-      where: `id = (${ids})`,
+      where: `id = (${ids.filter(v => !!v)})`,
     }),
   });
   const result = await response.json();

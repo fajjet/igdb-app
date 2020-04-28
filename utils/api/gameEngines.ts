@@ -1,6 +1,7 @@
 import { GameEngine } from 'types';
 
 export const fetchEnginesByIds = async (ids: Array<number>) => {
+  if (!Array.isArray(ids)) return [];
   const response = await fetch('/api/game_engines', {
     method: 'POST',
     headers: {
@@ -8,7 +9,7 @@ export const fetchEnginesByIds = async (ids: Array<number>) => {
     },
     body: JSON.stringify({
       fields: 'id, name, slug',
-      where: `id = (${ids})`,
+      where: `id = (${ids.filter(v => !!v)})`,
     }),
   });
   const result: Array<GameEngine> = await response.json();

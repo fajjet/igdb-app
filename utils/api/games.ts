@@ -31,7 +31,7 @@ export const fetchBaseGamesDataWithCoversByIds = async (ids: Array<number>) => {
     },
     body: JSON.stringify({
       fields: 'id, name, cover, slug',
-      where: `id = (${ids})`
+      where: `id = (${ids.filter(v => !!v)})`
     }),
   });
   const games: Array<GameBase> = (await response.json()).map((el: object) => keysToCamel(el));
@@ -86,7 +86,7 @@ export const fetchDetailGameBySlug = async (slug: string, dispatch: Dispatch) : 
 
   const cover = await fetchCoversByArrayOfIds([game.cover]);
 
-  game.coverHash = cover[0]?.imageId;
+  game.coverHash = cover?.[0]?.imageId;
   game.involvedCompaniesData = involvedCompanies;
   game.gameEnginesData = await fetchEnginesByIds(game.gameEngines);
   game.screenshotsData = await fetchSreenshotsByIds(game.screenshots);
