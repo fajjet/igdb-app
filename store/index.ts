@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, Action } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 // @ts-ignore
 import { createLogger } from 'redux-logger';
@@ -20,6 +19,6 @@ export const initStore = (initialState = initial) => {
   return createStore(
     reducers,
     initialState,
-    composeWithDevTools(applyMiddleware(...middlewares.filter(item => !!item)))
+    applyMiddleware(...middlewares.filter(item => !!item)),
   );
 };
