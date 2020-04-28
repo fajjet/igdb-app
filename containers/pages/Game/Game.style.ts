@@ -21,6 +21,7 @@ Game.MainColumn = styled.div`
   @media screen and (max-width: 900px) {
     width: 100%;
     padding-bottom: 1.5rem;
+    padding-right: 0;
   }
 `;
 
@@ -116,6 +117,7 @@ Game.SimilarSwiper = styled.div`
   .swiper-wrapper{
     white-space: nowrap;
     width: 100%;
+    padding-bottom: 2rem;
   }
 `;
 
@@ -132,10 +134,6 @@ Game.SimilarSlide = styled.div`
   padding: 0 1rem;
   width: 14rem;
   height: 16rem;
-  transition: opacity 0.15s ease;
-  &:hover{
-    opacity: 0.75;
-  }
 `;
 
 Game.SimilarSlideWrapper = styled.div`
@@ -144,6 +142,9 @@ Game.SimilarSlideWrapper = styled.div`
   height: 100%;
   width: 100%;
   background-color: ${provider.hexToRgba(provider.color.aquamarine, 0.15)};
+  transition: all 0.3s ease;
+  overflow: hidden;
+  
   img { 
     position: absolute;
     top: 0;
@@ -151,6 +152,10 @@ Game.SimilarSlideWrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  
+   &:hover{
+    opacity: 0.75;
   }
 `;
 
@@ -215,11 +220,16 @@ Game.ScreenshotsSwiper = styled.div`
 
 Game.ScreenshotSlide = styled.div`
   white-space: normal;
+  position: relative;
   display: inline-block;
   max-width: 100%;
   opacity: 0.75;
   filter: grayscale(100%);
   transition: opacity 0.3s ease, filter 0.3s ease;
+  text-align: center;
+  //background-color: ${provider.hexToRgba(provider.color.aquamarine, 0.5)};
+  overflow: hidden;
+  
   &.swiper-slide-active {
     opacity: 1;
     filter: none;
@@ -233,6 +243,25 @@ Game.ScreenshotSlide = styled.div`
   img {
     max-width: 100%;
     vertical-align: top;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 50px rgba(255,255,255,0.35);
+  }
+`;
+
+Game.ScreenshotSlideCover = styled.div`
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  right: -25px;
+  bottom: -25px;
+  
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    //opacity: 0.75;
+    filter: blur(20px);
   }
 `;
 
