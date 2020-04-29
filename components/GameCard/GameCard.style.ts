@@ -17,7 +17,7 @@ GameCard.Root = styled.div<{ color: string }>`
     width: 50%;
     top: 0;
     right: 0;
-    box-shadow:0 0 30px ${provider.hexToRgba(provider.color.purple, 0.75)};
+    box-shadow:0 1px 25px ${provider.hexToRgba(provider.color.purple, 0.75)};
     opacity: 0;
     transition: all 0.5s ease;
   }
@@ -29,7 +29,7 @@ GameCard.Root = styled.div<{ color: string }>`
     width: 50%;
     top: 0;
     left: 0;
-    box-shadow:0 0 30px ${provider.hexToRgba(provider.color.aquamarine, 0.75)};
+    box-shadow:0 1px 25px ${provider.hexToRgba(provider.color.aquamarine, 0.75)};
     opacity: 0;
     transition: all 0.5s ease;
   }
@@ -61,7 +61,7 @@ GameCard.Cover = styled.div`
   
   ${GameCard.Root}:hover & {
     img {
-      transform: scale(1.035);
+      transform: scale(1.0075);
     }
   }
 `;

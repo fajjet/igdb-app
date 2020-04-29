@@ -47,9 +47,6 @@ const GameCard = (props: Props) => {
           )
         })}
       </Styled.Genres>
-      <Styled.HoverCover>
-        <img src={image} alt={`${name} cover`}/>
-      </Styled.HoverCover>
     </Styled.Root>
   )
 };
