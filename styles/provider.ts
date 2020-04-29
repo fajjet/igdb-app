@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 enum Color {
     blackText = '#373737',
 
+    purple200 = '#caa3e8',
     purple = '#8b54b5',
     purple700 = '#6e5580',
 

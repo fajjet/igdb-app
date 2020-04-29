@@ -100,8 +100,10 @@ Game.Storyline = styled.div`
 Game.Similar = styled.div`
   overflow: hidden;
   max-width: 100%;
+  padding-bottom: 2rem;
   h2 {
     margin-bottom: 2.5rem;
+    color: #dbabff;
   }
 `;
 
@@ -110,7 +112,6 @@ Game.SimilarSwiper = styled.div`
   .swiper-wrapper{
     white-space: nowrap;
     width: 100%;
-    padding-bottom: 2rem;
   }
 `;
 
@@ -134,9 +135,24 @@ Game.SimilarSlideWrapper = styled.div`
   display: inline-block;
   height: 100%;
   width: 100%;
-  background-color: ${provider.hexToRgba(provider.color.aquamarine, 0.15)};
+  background-color: ${provider.hexToRgba(provider.color.purple, 0.15)};
   transition: all 0.3s ease;
   overflow: hidden;
+  border: 1px solid ${provider.color.purple200};
+  
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    z-index: 2;
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
   
   img { 
     position: absolute;
@@ -148,7 +164,10 @@ Game.SimilarSlideWrapper = styled.div`
   }
   
    &:hover{
-    opacity: 0.75;
+    //opacity: 0.75;
+    &:before{
+      opacity: 0.2;
+    }
   }
 `;
 
@@ -205,6 +224,7 @@ Game.Screenshots = styled.div`
   overflow: hidden;
   h2 {
     margin-bottom: 2.5rem;
+    color: #84f3fa;
   }
 `;
 
@@ -225,6 +245,7 @@ Game.ScreenshotSlide = styled.div`
   text-align: center;
   //background-color: ${provider.hexToRgba(provider.color.aquamarine, 0.5)};
   overflow: hidden;
+  border: 1px solid ${provider.color.aquamarine100};
   
   &.swiper-slide-active {
     opacity: 1;

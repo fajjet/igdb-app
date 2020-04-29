@@ -7,6 +7,7 @@ GameCard.Root = styled.div<{ color: string }>`
   padding-top: 130%;
   position: relative;
   background-color: ${provider.hexToRgba(provider.color.aquamarine, 0.15)};
+  box-shadow: 0 1px 5px rgba(255,255,255,0.05);
   
   &:before {
     content: '';
@@ -46,7 +47,7 @@ GameCard.Cover = styled.div`
   left: 0;
   height: 100%;
   width: 100%;
-  filter: saturate(50%);
+  //filter: saturate(50%);
   transition: filter 0.3s ease, transform 0.5s ease;
   z-index: 2;
   overflow: hidden;
@@ -59,9 +60,8 @@ GameCard.Cover = styled.div`
   }
   
   ${GameCard.Root}:hover & {
-    filter: none;
     img {
-      transform: scale(1.005);
+      transform: scale(1.035);
     }
   }
 `;
@@ -81,7 +81,7 @@ GameCard.Genre = styled.div`
   background-color: ${provider.color.purple700};
   font-size: 10px;
   margin-left: 10px;
-  padding: 1px 3px;
+  padding: 5px 7px;
   letter-spacing: 1px;
 `;
 
@@ -99,7 +99,23 @@ GameCard.Date = styled.div`
 `;
 
 GameCard.HoverCover = styled.div`
-  
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  opacity: 0;
+  transition: all 0.5s ease;
+  filter: contrast(1.1);
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  ${GameCard.Root}:hover & {
+    opacity: 0.5;
+  }
 `;
 
 export default GameCard;
