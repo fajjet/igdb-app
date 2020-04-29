@@ -38,7 +38,6 @@ Game.ImageColumn = styled.div`
 Game.RowInfoItem = styled.div`
   font-weight: 500;
   font-size: 1.25rem;
-  opacity: 0.7;
   margin-right: 2rem;
   margin-bottom: 0.5rem;
   position: relative;
@@ -73,7 +72,6 @@ Game.Developers = styled.div`
   margin-top: 0.75rem;
   font-weight: 700;
   font-size: 1.5rem;
-  color: ${provider.color.aquamarineHeading};
 `;
 
 Game.InfoItem = styled.div`
@@ -85,7 +83,6 @@ Game.InfoItemName = styled.div`
   flex-shrink: 0;
   font-weight: 500;
   padding-right: 0.5rem;
-  opacity: 0.8;
 `;
 
 Game.InfoItemValue = styled.div`
@@ -93,10 +90,7 @@ Game.InfoItemValue = styled.div`
 `;
 
 Game.Storyline = styled.div`
-  padding-top: 1rem;
-  h2 {
-    opacity: 0.7;
-  } 
+  padding-top: 1rem; 
   p {
     line-height: 1.7;
     white-space: pre-wrap;
@@ -107,7 +101,6 @@ Game.Similar = styled.div`
   overflow: hidden;
   max-width: 100%;
   h2 {
-    opacity: 0.7;
     margin-bottom: 2.5rem;
   }
 `;
@@ -163,14 +156,13 @@ Game.Rating = styled.div`
 
   font-weight: 500;
   margin-bottom: 2rem;
-  color: ${provider.color.aquamarine};
   font-size: 2rem;
   position: relative;
-  opacity: 0.8;
   
   i {
     vertical-align: middle;
     display: inline-block;
+    font-weight: 700;
   }
   
   span {
@@ -184,11 +176,11 @@ Game.Rating = styled.div`
 Game.RatingScale = styled.div<{ rating: number }>`
   content: '';
   display: inline-block;
-  height: 25px;
-  width: 16px;
+  height: 12px;
+  width: 12px;
   vertical-align: middle;
   margin-left: 0.75rem;
-  border: 3px solid ${provider.color.aquamarine};
+  border: 3px currentColor;
   position: relative;
   
   &:after{
@@ -197,9 +189,14 @@ Game.RatingScale = styled.div<{ rating: number }>`
     position: absolute;
     left: 0;
     bottom: 0;
-    height: ${props => props.rating * 100}%;
+    height: 100%;
     width: 100%;
     background-color: ${props => percentageToColor(props.rating, true)};
+    box-shadow: 
+      0 0 5px ${props => percentageToColor(props.rating, true)},
+      0 0 10px ${props => percentageToColor(props.rating, true)},
+      0 0 15px ${props => percentageToColor(props.rating, true)}
+    ;
   }
 `;
 
@@ -207,7 +204,6 @@ Game.Screenshots = styled.div`
   padding: 1rem 0 3rem 0;
   overflow: hidden;
   h2 {
-    opacity: 0.7;
     margin-bottom: 2.5rem;
   }
 `;

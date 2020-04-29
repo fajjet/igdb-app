@@ -3,11 +3,41 @@ import { provider } from 'styles';
 
 const GameCard: any = {};
 
-GameCard.Root = styled.div`
+GameCard.Root = styled.div<{ color: string }>`
   padding-top: 130%;
   position: relative;
   background-color: ${provider.hexToRgba(provider.color.aquamarine, 0.15)};
-  overflow: hidden;
+  
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    top: 0;
+    right: 0;
+    box-shadow:0 0 30px ${provider.hexToRgba(provider.color.purple, 0.75)};
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    top: 0;
+    left: 0;
+    box-shadow:0 0 30px ${provider.hexToRgba(provider.color.aquamarine, 0.75)};
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
+  
+  &:hover{
+    &:after, &:before{
+      opacity: 1;
+    }
+  }
 `;
 
 GameCard.Cover = styled.div`
@@ -16,18 +46,23 @@ GameCard.Cover = styled.div`
   left: 0;
   height: 100%;
   width: 100%;
-  filter: saturate(35%);
-  transition: filter 0.5s ease, transform 0.75s ease;
-  
-  ${GameCard.Root}:hover & {
-    filter: none;
-    transform: scale(1.015);
-  }
+  filter: saturate(50%);
+  transition: filter 0.3s ease, transform 0.5s ease;
+  z-index: 2;
+  overflow: hidden;
   
   img {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    transition: all 0.5s ease;
+  }
+  
+  ${GameCard.Root}:hover & {
+    filter: none;
+    img {
+      transform: scale(1.005);
+    }
   }
 `;
 
@@ -38,6 +73,7 @@ GameCard.Genres = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  z-index: 3;
 `;
 
 GameCard.Genre = styled.div`
@@ -59,50 +95,11 @@ GameCard.Date = styled.div`
   padding: 5px;
   letter-spacing: 1px;
   font-weight: 400;
+  z-index: 3;
 `;
 
-GameCard.Hype = styled.div`
-  position: absolute;
-  bottom: calc(50% - 0.5rem);
-  left: 0;
-  width: 100%;
-  height: 1rem;
-  background-color: rgba(255,255,255,0.1);
-  backdrop-filter: saturate(150%) blur(10px);
+GameCard.HoverCover = styled.div`
   
-  span{
-    font-size: 8px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    color: white;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    justify-content: flex-end;
-    padding-right: 5px;
-    white-space: nowrap;
-  }
-`;
-
-const g = {
-  c2: 'white',
-  c1: provider.color.purple,
-};
-
-GameCard.HypeBar = styled.div<{ level: number }>`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 100%;
-  background: linear-gradient(to right, ${g.c2} 0%, ${g.c1} 50%, black 99%);
-  width: ${props => props.level * 100}%;
-  opacity: 0.75;
 `;
 
 export default GameCard;

@@ -9,7 +9,7 @@ Header.Root = styled.div`
   left: 0;
   width: 100%;
   height: 4.25rem;
-  background-color: rgba(255,255,255,0.7);
+  background-color: rgba(0,0,0,0.5);
   backdrop-filter: saturate(180%) blur(20px);
   box-shadow: 0 0 18px rgba(0,0,0,0.05);
   z-index: 100;
@@ -23,9 +23,16 @@ Header.Wrapper = styled.div`
 `;
 
 Header.Link = styled.a`
-  font-weight: 400;
+  font-weight: 300;
   margin-right: 2rem;
-  color: ${provider.color.aquamarine};
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+  transition: all 0.15s ease;
+  &:hover{
+    color: ${provider.color.aquamarine100};
+  }
 `;
 
 export default Header;

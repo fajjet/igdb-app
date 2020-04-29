@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Game, ImageSizes, Genre } from 'types';
 
-import { getImageUrl } from "utils";
+import { getImageUrl, percentageToColor } from "utils";
 import Styled from './GameCard.style';
 
 interface Props extends Omit<Game, 'genres'> {
@@ -10,7 +10,9 @@ interface Props extends Omit<Game, 'genres'> {
 }
 
 const GameCard = (props: Props) => {
-  const { coverHash, hypeLevel, firstReleaseDate, genres, name } = props;
+  const { coverHash, firstReleaseDate, genres, name } = props;
+
+  const color = useRef(percentageToColor(Math.random(), false, undefined, 50, 360, 0));
 
   const fhdImage = getImageUrl(coverHash, ImageSizes.fhd);
   const smallImage = getImageUrl(coverHash, ImageSizes.coverSmall);
@@ -29,7 +31,7 @@ const GameCard = (props: Props) => {
   }, []);
 
   return (
-    <Styled.Root as={'article'}>
+    <Styled.Root as={'article'} color={color.current}>
       <Styled.Cover>
         <img src={image} alt={`${name} cover`}/>
       </Styled.Cover>
@@ -45,11 +47,9 @@ const GameCard = (props: Props) => {
           )
         })}
       </Styled.Genres>
-      <Styled.Hype>
-        <Styled.HypeBar level={hypeLevel}>
-          <span>hype</span>
-        </Styled.HypeBar>
-      </Styled.Hype>
+      <Styled.HoverCover>
+
+      </Styled.HoverCover>
     </Styled.Root>
   )
 };

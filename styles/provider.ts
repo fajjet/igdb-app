@@ -9,8 +9,11 @@ enum Color {
     aquamarineTextOnBlackCover = '#b9e4e7',
     aquamarineHeading = '#83afb3',
     aquamarine300 = '#398c94',
+    aquamarine100 = '#46bcc4',
     aquamarine = '#398c94',
     aquamarine700 = '#386b70',
+
+    red = '#ff0029',
 
     footerBackground = 'white',
 }

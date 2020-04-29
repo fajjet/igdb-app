@@ -10,7 +10,7 @@ Home.Root = styled.div`
 
 Home.Grid = styled.div`
   display: grid;
-  grid-gap: 1rem;
+  grid-gap: 1.5rem;
   grid-template-columns: repeat( auto-fit, minmax(320px, 1fr) );
 `;
 
