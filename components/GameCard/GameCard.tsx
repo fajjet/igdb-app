@@ -30,6 +30,9 @@ const GameCard = (props: Props) => {
     img.src = fhdImage;
   }, []);
 
+  const genresArray = genres || [];
+  genresArray.length = 2;
+
   return (
     <Styled.Root as={'article'} color={color.current}>
       <Styled.Cover>
@@ -39,7 +42,7 @@ const GameCard = (props: Props) => {
         {releaseDate}
       </Styled.Date>
       <Styled.Genres>
-        {genres?.map(genre => {
+        {genresArray?.map(genre => {
           return (
             <Styled.Genre key={genre.id}>
               {genre.name}
